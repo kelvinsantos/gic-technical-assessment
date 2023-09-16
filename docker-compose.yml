@@ -1,12 +1,17 @@
-version: '3.7'
-
+version: '3.9'
+networks:
+    local:
+        name: local-network
 services:
     mongo:
-        image: mongo:4.2.1-bionic
+        container_name: 'mongo'
+        image: mongo:latest
         volumes:
             - ./mongo-data/:/data/db/
         ports:
             - '27017:27017'
+        networks:
+            - local
 
     backend:
         container_name: 'backend'
@@ -22,8 +27,9 @@ services:
             - PORT=3000
             - MONGO_URI=mongodb://mongo:27017/gic
             - X_API_KEY=development
-        links:
-            - mongo
+        image: 'backend'
+        networks:
+            - local
 
     frontend:
         container_name: 'frontend'
@@ -36,3 +42,6 @@ services:
             - '3001:3001'
         environment:
             - NODE_ENV=development
+        image: 'frontend'
+        networks:
+            - local

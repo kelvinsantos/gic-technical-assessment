@@ -54,20 +54,3 @@ $ npm run start:dev
 $ npm run build
 $ npm start
 ```
-
-## Dockerized Build Setup
-
-```bash
-# start the development cluster
-$ docker-compose up -d
-
-# view consolidated logs via docker-compose
-$ docker-compose logs -f
-
-# log into app container
-$ docker exec -it ${service_name} sh
-
-# shutdown development cluster
-$ docker-compose down
-```
-
