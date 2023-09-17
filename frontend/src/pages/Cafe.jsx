@@ -29,6 +29,7 @@ const Cafe = ({
 
     useEffect(() => {
         getCafes(location);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location]);
 
     const createDialogContent = (
@@ -72,8 +73,10 @@ const Cafe = ({
                 <MenuItem value="Filter location" selected={true}>
                     Filter location
                 </MenuItem>
-                {cafes?.map((cafe) => (
-                    <MenuItem value={cafe.location}>{cafe.location}</MenuItem>
+                {cafes?.map((cafe, i) => (
+                    <MenuItem key={i} value={cafe.location}>
+                        {cafe.location}
+                    </MenuItem>
                 ))}
             </Select>
             &nbsp;

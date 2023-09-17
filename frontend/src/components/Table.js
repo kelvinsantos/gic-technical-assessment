@@ -12,6 +12,7 @@ const Table = ({
 
     const gridRef = useRef();
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const defaultColDef = useMemo(() => ({
         sortable: true
     }));

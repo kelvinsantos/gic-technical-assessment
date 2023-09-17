@@ -37,6 +37,7 @@ const Employee = ({
     useEffect(() => {
         getEmployees(searchParams.get('cafe') || '');
         getCafes();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const createDialogContent = (

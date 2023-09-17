@@ -1,4 +1,4 @@
-import { TextField, Button, Grid } from '@mui/material';
+import { TextField, Button, Grid, FormHelperText } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { Formik } from 'formik';
@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import ImageCallRenderer from '../ImageCallRenderer';
-import { usePrompt } from '../../utils';
+import { convertBase64 } from '../../utils';
 
 const CafeSchema = Yup.object().shape({
     description: Yup.string().max(256).required('Required'),
@@ -34,18 +34,7 @@ const VisuallyHiddenInput = styled('input')({
     width: 1
 });
 
-const convertBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-        const fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-        fileReader.onload = () => {
-            resolve(fileReader.result);
-        };
-        fileReader.onerror = (error) => {
-            reject(error);
-        };
-    });
-};
+const MAX_FILE_SIZE = 2000000; // 2mb
 
 export default function CafeForm({
     data,
@@ -92,23 +81,11 @@ export default function CafeForm({
                 }, 400);
             }}
         >
-            {({
-                values,
-                errors,
-                touched,
-                handleChange,
-                handleBlur,
-                handleSubmit,
-                dirty
-            }) => {
-                // eslint-disable-next-line react-hooks/rules-of-hooks
-                usePrompt('Leave screen?', dirty);
-
+            {({ values, errors, touched, handleChange, handleSubmit }) => {
                 return (
                     <form onSubmit={handleSubmit}>
                         {data ? (
                             <TextField
-                                autoFocus
                                 margin="dense"
                                 id="id"
                                 label="ID"
@@ -116,13 +93,11 @@ export default function CafeForm({
                                 fullWidth
                                 variant="standard"
                                 onChange={handleChange}
-                                onBlur={handleBlur}
                                 value={values.id}
                                 disabled={true}
                             />
                         ) : null}
                         <TextField
-                            autoFocus
                             margin="dense"
                             id="description"
                             label="Description"
@@ -130,15 +105,16 @@ export default function CafeForm({
                             fullWidth
                             variant="standard"
                             onChange={handleChange}
-                            onBlur={handleBlur}
                             value={values.description}
                             disabled={loading}
+                            error={errors.description && touched.description}
+                            helperText={
+                                errors.description &&
+                                touched.description &&
+                                errors.description
+                            }
                         />
-                        {errors.description &&
-                            touched.description &&
-                            errors.description}
                         <TextField
-                            autoFocus
                             margin="dense"
                             id="location"
                             label="Location"
@@ -146,13 +122,16 @@ export default function CafeForm({
                             fullWidth
                             variant="standard"
                             onChange={handleChange}
-                            onBlur={handleBlur}
                             value={values.location}
                             disabled={loading}
+                            error={errors.location && touched.location}
+                            helperText={
+                                errors.location &&
+                                touched.location &&
+                                errors.location
+                            }
                         />
-                        {errors.location && touched.location && errors.location}
                         <TextField
-                            autoFocus
                             margin="dense"
                             id="name"
                             label="Name"
@@ -160,11 +139,13 @@ export default function CafeForm({
                             fullWidth
                             variant="standard"
                             onChange={handleChange}
-                            onBlur={handleBlur}
                             value={values.name}
                             disabled={loading}
+                            error={errors.name && touched.name}
+                            helperText={
+                                errors.name && touched.name && errors.name
+                            }
                         />
-                        {errors.name && touched.name && errors.name}
                         <br />
                         <br />
                         <div>
@@ -183,9 +164,13 @@ export default function CafeForm({
                             </Button>
                             &nbsp;{file?.name}
                             <br />
-                            {file?.size > 2000000 // 2mb
-                                ? 'File size has exceed 2mb restriction'
-                                : ''}
+                            <FormHelperText
+                                error={file && file?.size > MAX_FILE_SIZE}
+                            >
+                                {file && file?.size > MAX_FILE_SIZE
+                                    ? 'File size has exceed 2mb restriction'
+                                    : ''}
+                            </FormHelperText>
                             {data?.logo ? (
                                 <>
                                     <br />

@@ -1,4 +1,4 @@
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/tsw_hris';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/gic';
 const CONNECT_WITH_NO_PRIMARY = false;
 
 export = {

@@ -1,0 +1,288 @@
+{
+	"info": {
+		"_postman_id": "6aac5441-c43d-44eb-b0c3-ec6884e01c32",
+		"name": "GIC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8782020"
+	},
+	"item": [
+		{
+			"name": "Create Employee",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "development",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"UIXXXXXX3\",\n    \"name\": \"Roronoa Zoro\",\n    \"email_address\": \"test@mail.com\",\n    \"phone_number\": \"81234567\",\n    \"gender\": \"Male\",\n    \"cafe\": {\n        \"id\": \"6504d60d3c379040a3218fd8\",\n        \"name\": \"RZ Cafe 1\",\n        \"start_date\": \"1694365454298\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/employees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Employee",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "development",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/employees/UIXXXXXX1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"employees",
+						"UIXXXXXX1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Employees",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "development",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/employees?cafe=RZ Cafe 1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"employees"
+					],
+					"query": [
+						{
+							"key": "cafe",
+							"value": "RZ Cafe 1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Employee",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "development",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Roronoa Zoro 1\",\n  \"email_address\": \"test@mail.com\",\n  \"phone_number\": \"81234567\",\n  \"gender\": \"Male\",\n  \"cafe\": {\n        \"id\": \"64fe008f45a3de49538f89c0\",\n        \"name\": \"RZ Cafe 1\",\n        \"start_date\": \"1694365454298\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/employees/UIXXXXXX1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"employees",
+						"UIXXXXXX1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Employee",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "development",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/employees/UIXXXXXX1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"employees",
+						"UIXXXXXX1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Cafe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "development",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"RZ Cafe 1\",\n    \"description\": \"Roronoa Zoro\",\n    \"location\": \"81234567\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/cafes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cafes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cafes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "development",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/cafes?location=81234567",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cafes"
+					],
+					"query": [
+						{
+							"key": "location",
+							"value": "81234567"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Cafe",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "development",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"RZ Cafe 3\",\n    \"description\": \"Roronoa Zoro\",\n    \"location\": \"81234567\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/cafes/6501f8073582e2733a865df8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cafes",
+						"6501f8073582e2733a865df8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Cafe",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "development",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/cafes/64fe04e73582e2733a865def",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cafes",
+						"64fe04e73582e2733a865def"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
