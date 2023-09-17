@@ -28,6 +28,16 @@ there are README file for both the frontend and backend app
 please check them out in running them directly.
 ```
 
+# Accessing the applications
+
+```bash
+# frontend app
+$ http://localhost:3001
+
+# backend app
+$ http://localhost:3000
+```
+
 # Testing the backend apis via postman
 
 ```bash
