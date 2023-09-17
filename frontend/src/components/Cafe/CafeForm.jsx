@@ -81,7 +81,14 @@ export default function CafeForm({
                 }, 400);
             }}
         >
-            {({ values, errors, touched, handleChange, handleSubmit }) => {
+            {({
+                values,
+                errors,
+                touched,
+                handleChange,
+                handleSubmit,
+                handleBlur
+            }) => {
                 return (
                     <form onSubmit={handleSubmit}>
                         {data ? (
@@ -113,6 +120,7 @@ export default function CafeForm({
                                 touched.description &&
                                 errors.description
                             }
+                            onBlur={handleBlur}
                         />
                         <TextField
                             margin="dense"
@@ -130,6 +138,7 @@ export default function CafeForm({
                                 touched.location &&
                                 errors.location
                             }
+                            onBlur={handleBlur}
                         />
                         <TextField
                             margin="dense"
@@ -145,6 +154,7 @@ export default function CafeForm({
                             helperText={
                                 errors.name && touched.name && errors.name
                             }
+                            onBlur={handleBlur}
                         />
                         <br />
                         <br />
